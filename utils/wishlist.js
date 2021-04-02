@@ -12,7 +12,7 @@ module.exports = function Wishlist(initItems) {
 
     this.remove = (id) => {
         delete this.items[id];
-        this.total--;
+        if (this.total >0) this.total--;
     };
 
     this.generateArray = () => {
