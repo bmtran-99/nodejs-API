@@ -1,7 +1,7 @@
 {
   "name": "shoppal",
   "version": "1.0.0",
-  "description": "mean stack without angular",
+  "description": "mean stack",
   "main": "app.js",
   "scripts": {
     "test": "npm test",
@@ -16,7 +16,6 @@
     "connect-mongo": "^4.4.1",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
-    "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.5",
