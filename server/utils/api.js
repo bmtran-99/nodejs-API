@@ -5,17 +5,11 @@ const uri = "mongodb+srv://bmtran:minhcurry99@clusterio.ijqmn.mongodb.net/games?
 
 const options = {
   method: 'GET',
-  url: 'https://rawg-video-games-database.p.rapidapi.com/games',
-  headers: {
-    'x-rapidapi-key': 'e6463eb2dcmshe484eee23f15cebp1bd3edjsn24f5be7777fb',
-    'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
-    useQueryString: true
-  }
+  url: 'https://api.rawg.io/api/games?key=d96918eebf564d259feacd863bab7c9b&dates=2019-01-01,2021-01-01&ordering=-added&page_size=500',
 };
 
 request(options, async function (error, response, body) {
     if (error) throw new Error(error);
-
     var json = [];
 
     var convertedData = await JSON.parse(body);
