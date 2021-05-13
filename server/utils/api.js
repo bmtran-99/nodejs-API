@@ -1,5 +1,5 @@
 const request = require('request');
-const Category = require('./category');
+const Category = require('../models/category');
 const {MongoClient} = require('mongodb');
 const uri = "mongodb+srv://bmtran:minhcurry99@clusterio.ijqmn.mongodb.net/games?retryWrites=true&w=majority";
 
