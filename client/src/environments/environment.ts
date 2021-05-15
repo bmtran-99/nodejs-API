@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseURL: 'localhost:3000/',
+  firebase: {
+    apiKey: "AIzaSyCpkf2rNKaw9dhLCpdbG-WfPZz3-aeJGZQ",
+    authDomain: "shoppal-firebase.firebaseapp.com",
+    projectId: "shoppal-firebase",
+    storageBucket: "shoppal-firebase.appspot.com",
+    messagingSenderId: "804962731988",
+    appId: "1:804962731988:web:952c9b3122721d61e8f841",
+    measurementId: "G-QZCX308Z3Q"
+  }
 };
 
 /*
