@@ -17,6 +17,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +46,10 @@ import { RegisterComponent } from './components/register/register.component';
     MatGridListModule,
     MatSnackBarModule,
     MatDividerModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }),

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'localhost:3000/',
+  baseURL: 'localhost:3000',
   firebase: {
     apiKey: "AIzaSyCpkf2rNKaw9dhLCpdbG-WfPZz3-aeJGZQ",
     authDomain: "shoppal-firebase.firebaseapp.com",

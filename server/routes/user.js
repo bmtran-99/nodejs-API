@@ -41,9 +41,8 @@ router.post('/login', (req, res) => {
             if (isMatch) {
                 const payload = { id: user._id, username: user.username}
                 console.log(payload )
-                jwt.sign(payload, secretOrKey, { expiresIn: 3600 }, (error, token) => {
+                jwt.sign(payload, secretOrKey, { expiresIn: 1200 }, (error, token) => {
                     res.json({
-                        success: true,
                         token: 'Bearer ' + token
                     })
                 });
@@ -57,7 +56,6 @@ router.post('/login', (req, res) => {
 
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({
-        id: req.user.id,
         username: req.user.username,
         email: req.user.email
     });
