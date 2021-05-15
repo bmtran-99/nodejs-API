@@ -5,6 +5,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const user = require('../routes/user');
+const index = require('../routes/index');
 const passport = require('passport');
 
 const app = express();
@@ -21,5 +22,6 @@ app.use(passport.initialize());
 require('../utils/passport');
 
 app.use('/api/users', user);
+app.use('/api/games', index);
 
 module.exports = app;

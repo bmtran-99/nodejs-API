@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { StoreModule } from '@ngrx/store';
+import { userReducer } from './ngrx/user.reducer';
+import { UserEffects } from './ngrx/user.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -37,8 +39,20 @@ import { RegisterComponent } from './components/register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    // Authentication imports
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+
+    // NgRx imports
+    StoreModule.forRoot({
+      user: userReducer
+    }),
+    EffectsModule.forRoot([
+      UserEffects
+    ]),
+
+    // Material imports
     MatButtonModule,
     MatInputModule,
     MatCardModule,
@@ -50,6 +64,8 @@ import { RegisterComponent } from './components/register/register.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+
+    // DevTools import
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }),

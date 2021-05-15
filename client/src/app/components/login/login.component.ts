@@ -1,11 +1,18 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
+import { Store } from '@ngrx/store';
 import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase/app';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import * as Actions from 'src/app/ngrx/user.action';
+
+interface LoginState {
+  user: User;
+}
 
 @Component({
   selector: 'app-login',
@@ -13,23 +20,28 @@ import firebase from 'firebase/app';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  user$: Observable<User> = new Observable<User>();
+  defaultUser = new User('', 'GUEST', '',);
 
   loginForm = new FormGroup({
     identifier: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor(private auth: AngularFireAuth, private service: UserService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private auth: AngularFireAuth, private service: UserService, private router: Router, 
+    private snackBar: MatSnackBar, private store: Store<LoginState>) { }
 
   ngOnInit(): void {
+    this.user$ = this.store.select('user');
+    this.store.dispatch(Actions.GetUser({payload: this.defaultUser}));
   }
 
   loginWithGoogle() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.store.dispatch(Actions.GoogleLogin());
   }
 
   loginWithFacebook() {
-    this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    this.store.dispatch(Actions.FacebookLogin());
   }
 
   onSubmit() {
@@ -42,7 +54,7 @@ export class LoginComponent implements OnInit {
       if (err.error.msg) {
         this.snackBar.open(err.error.msg, 'Undo');
       } else {
-        this.snackBar.open('Something Went Wrong!', '', {duration: 5000});
+        this.snackBar.open('Something Went Wrong..', '', {duration: 5000});
       }
     });
   }
