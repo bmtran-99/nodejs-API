@@ -37,11 +37,11 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithGoogle() {
-    this.store.dispatch(Actions.GoogleLogin());
+    this.store.dispatch(Actions.GoogleLogin({payload: this.user$}));
   }
 
   loginWithFacebook() {
-    this.store.dispatch(Actions.FacebookLogin());
+    this.store.dispatch(Actions.FacebookLogin({payload: this.user$}));
   }
 
   onSubmit() {

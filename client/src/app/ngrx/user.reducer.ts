@@ -1,7 +1,7 @@
 import * as Actions from "./user.action";
 import { User } from "../models/user.model";
 
-const defaultUser = new User('', 'GUEST', '');
+export const defaultUser = new User('', 'GUEST', '');
 
 export function userReducer(state: User = defaultUser, action: any) {
     switch(action) {
